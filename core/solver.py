@@ -101,8 +101,11 @@ class Solver(nn.Module):
             inputs = next(fetcher)
             x_real, y_org = inputs.x_src, inputs.y_src
             x_ref, x_ref2, y_trg = inputs.x_ref, inputs.x_ref2, inputs.y_ref
+            #m z_trg = torch.randn(x.size(0), self.latent_dim)
+            #m z_trg2 = torch.randn(x.size(0), self.latent_dim)
             z_trg, z_trg2 = inputs.z_trg, inputs.z_trg2
 
+            #m get mask by network
             masks = nets.fan.get_heatmap(x_real) if args.w_hpf > 0 else None
 
             # train the discriminator
